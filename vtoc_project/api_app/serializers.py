@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from .models import TryOnModel
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -28,3 +29,9 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"error":"Email already exists.."})
         
         return data
+    
+class TryOnModelSerializer(serializers.ModelSerializer):
+    tryon_image = serializers.CharField(required=False)
+    class Meta:
+        model = TryOnModel
+        fields = "__all__"

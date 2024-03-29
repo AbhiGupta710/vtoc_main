@@ -11,8 +11,8 @@ const SamplePage = () => {
 	const [loading1, setLoading1] = useState(false);
 	const [loading2, setLoading2] = useState(false);
 
-	console.log(selectedImage1)
-	
+	// console.log(selectedImage1)
+
 	const handleImageSelect = (e, setImage, setLoading) => {
 		setLoading(true); // Set loading state to true
 		const file = e.target.files[0];
@@ -80,7 +80,7 @@ const SamplePage = () => {
 						) : (
 							<>
 								<img
-									src={Model}	
+									src={Model}
 									alt='Default Image 1'
 									className='max-w-full max-h-[600px]'
 								/>

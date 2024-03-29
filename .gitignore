@@ -1,0 +1,11 @@
+__pycache__/
+# Ignore .pth files
+*.pth
+
+# Ignore .prototxt files
+*.prototxt
+
+# Ignore .caffemodel files
+*.caffemodel
+
+vtoc_env/

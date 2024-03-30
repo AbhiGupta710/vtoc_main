@@ -29,7 +29,6 @@ function SignUp({ onSignup }) {
 			email: data.email,
 		};
 		onSignup(sortedData);
-		navigate("/sample");
 	};
 
 	useEffect(() => {

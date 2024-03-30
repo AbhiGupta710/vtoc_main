@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
 	const handleLogout = () => {
 		setIsLoggedIn(false);
 		localStorage.removeItem("accessToken");
+		localStorage.removeItem("userData");
 	};
 
 	useEffect(() => {

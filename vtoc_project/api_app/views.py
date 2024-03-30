@@ -35,7 +35,6 @@ def register(request):
         
         # data['password'] = make_password(data['password'])
         user = user_serialize.save()
-
         refresh = RefreshToken.for_user(user)
 
         return Response({
@@ -58,6 +57,11 @@ class TryOnModelViewSet(viewsets.ModelViewSet):
         person_image = data.get('person_image')
         cloth_image = data.get('cloth_image')
 
+        if not person_image:
+            return Response({"error": "Please upload person's image.."}, status=status.HTTP_400_BAD_REQUEST)
+        if not cloth_image:
+            return Response({"error": "Please upload cloth's image.."}, status=status.HTTP_400_BAD_REQUEST)
+        
         save_base64_image(person_image, cloth_image, username)  # download the image at path
         tryon_image = fit_cloth(f"{username}_person.jpg", f"{username}_cloth.jpg")  # generate image
         date_time = timezone.now()

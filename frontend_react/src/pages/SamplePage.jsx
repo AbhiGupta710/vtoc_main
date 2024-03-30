@@ -5,11 +5,25 @@ import Shirt from "../assets/Images/shirt.jpg";
 import finalModel from "../assets/Images/model2.jpg";
 import FooterSection from "../components/FooterSection";
 
-const SamplePage = () => {
+const SamplePage = ({onTryonSubmit, finalImg}) => {
 	const [selectedImage1, setSelectedImage1] = useState(null);
 	const [selectedImage2, setSelectedImage2] = useState(null);
 	const [loading1, setLoading1] = useState(false);
 	const [loading2, setLoading2] = useState(false);
+	
+	// console.log(finalImg.data?.tryon_image);
+
+	const userData = localStorage.getItem("userData")
+
+	const handleSubmit = () => {
+		const sampleData = {
+			userData: userData,
+			selectedImage1: selectedImage1,
+			selectedImage2: selectedImage2,
+		};
+		onTryonSubmit(sampleData)
+
+	}
 
 	// console.log(selectedImage1)
 
@@ -54,8 +68,7 @@ const SamplePage = () => {
 					<span className='text-yellow-400 font-bold'>
 						Note<sup>*</sup>:
 					</span>{" "}
-					Please uploade your image and cloths image in the same position as
-					shown in the below figure.
+					For better results upload the images with white background and with good ascpect ratio.
 				</p>
 				<div className='image-container flex flex-col sm:flex-row gap-24 sm:gap-12 items-center justify-center'>
 					<div>
@@ -148,11 +161,27 @@ const SamplePage = () => {
 						</label>
 					</div>
 				</div>
-				<img
-					src={finalModel}
+				{
+					finalImg === "" ? (<img
+						src={finalModel}
+						alt=''
+						className='max-w-full sm:max-w-[500px] flex items-center justify-center'
+					/>) : (
+						<img
+					src={finalImg.data?.tryon_image}
 					alt=''
 					className='max-w-full sm:max-w-[500px] flex items-center justify-center'
 				/>
+					)
+				}
+				
+								<button
+										onClick={handleSubmit}
+							type='submit'
+							className='w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2'>
+							Try On
+						</button>
+
 			</div>
 			<FooterSection />
 		</>

@@ -8,4 +8,5 @@ __pycache__/
 # Ignore .caffemodel files
 *.caffemodel
 
+tensorboard/
 vtoc_env/
